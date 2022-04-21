@@ -186,7 +186,7 @@ int* Index(Student* p, int N) {
             (p[I[j]].kurs == p[value].kurs &&
                 p[I[j]].spec > p[value].spec)
             ||
-            (p[I[j]].spec == p[value].spec &&
+            (p[I[j]].kurs == p[value].kurs && p[I[j]].spec == p[value].spec &&
                 p[value].lname > p[I[j]].lname));
             j--)
         {
@@ -203,13 +203,13 @@ int binSearch(Student* p, const int N, const string lname, const Spec spec, cons
         m = (L + R) / 2;
         if (p[m].lname == lname && p[m].spec == spec && p[m].kurs == kurs)
             return m;
-        if ((p[m].lname > lname)
+        if ((p[m].kurs < kurs)
             ||
-            (p[m].lname == lname &&
+            (p[m].kurs == kurs &&
                 p[m].spec < spec)
             ||
-            p[m].spec < spec &&
-            p[m].kurs == kurs)
+            (p[m].kurs == kurs && p[m].spec == spec &&
+            p[m].lname < lname))
         {
             L = m + 1;
         }
